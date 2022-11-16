@@ -1,3 +1,7 @@
+import { getBooks } from '../api/bookData';
+import { showBooks } from '../pages/books';
+import { getAuthors } from '../api/authorData';
+import { showAuthors } from '../pages/authors';
 import logoutButton from '../components/buttons/logoutButton';
 import domBuilder from '../components/shared/domBuilder';
 import navBar from '../components/shared/navBar';
@@ -13,7 +17,10 @@ const startApp = () => {
   logoutButton(); // ADD THE LOGOUT BUTTON COMPONENT
   navigationEvents(); // ATTACH THE EVENT LISTENERS TO THE NAVBAR
 
-  // TODO: Put all books on the DOM on App load
+  // Put all books on the DOM on App load
+  getBooks().then((books) => showBooks(books));
+  // whatever you resolve is returned at .then(taco)
+  getAuthors().then((authors) => showAuthors(authors));
 };
 
 export default startApp;
