@@ -53,21 +53,19 @@ const formEvents = () => {
     if (e.target.id.includes('submit-author')) {
       // console.warn('CLICKED SUBMIT AUTHOR');
       const payload = {
-        title: document.querySelector('#title').value,
-        description: document.querySelector('#description').value,
-        image: document.querySelector('#image').value,
-        price: document.querySelector('#price').value,
-        author_id: document.querySelector('#author_id').value,
-        sale: document.querySelector('#sale').checked,
+        first_name: document.querySelector('#first_name').value,
+        last_name: document.querySelector('#last_name').value,
+        email: document.querySelector('#email').value,
+        favorite: document.querySelector('#favorite').checked,
       };
 
       createAuthor(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-      
+
         updateAuthor(patchPayload).then(() => {
-          getAuthors().then(showAuthors)
+          getAuthors().then(showAuthors);
+        });
       });
-    });
     }
     // FIXME:ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('update-author')) {
@@ -76,15 +74,16 @@ const formEvents = () => {
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
         email: document.querySelector('#email').value,
-        author_id: document.querySelector('#favorite').checked,
+        favorite: document.querySelector('#favorite').checked,
         firebaseKey,
       };
 
       updateAuthor(payload).then(() => {
+        console.warn(payload);
         getAuthors().then(showAuthors);
       });
     }
-  }
-);
+  });
+};
 
-export default formEvents ;
+export default formEvents;

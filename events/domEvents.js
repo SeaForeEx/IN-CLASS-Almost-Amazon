@@ -22,7 +22,7 @@ const domEvents = () => {
 
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
-      console.warn('ADD BOOK');
+      // console.warn('ADD BOOK');
       addBookForm();
     }
 
@@ -43,7 +43,7 @@ const domEvents = () => {
     if (e.target.id.includes('delete-author-btn')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
-        console.warn('DELETE AUTHOR', e.target.id);
+        // console.warn('DELETE AUTHOR', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteSingleAuthor(firebaseKey).then(() => {
@@ -59,7 +59,7 @@ const domEvents = () => {
     }
     // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
     const [, firebaseKey] = e.target.id.split('--');
-    getSingleBook(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
+    getSingleBook(firebaseKey).then((authorObject) => addAuthorForm(authorObject));
   });
 };
 
