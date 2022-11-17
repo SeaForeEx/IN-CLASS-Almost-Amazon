@@ -15,7 +15,7 @@ const addAuthorForm = (obj = {}) => {
       </div>
       <div class="form-group">
         <label for="title">Email</label>
-        <input type="email" class="form-control" id="email" aria-describedby="Email" placeholder="Enter Email" value="${obj.email || ''}"required>
+        <input type="email" class="form-control" id="email" aria-describedby="Email" placeholder="Enter Email" value="${obj.email || ''}" required>
       </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="favorite" ${obj.favorite ? 'checked' : ''}>
@@ -28,5 +28,3 @@ const addAuthorForm = (obj = {}) => {
 };
 
 export default addAuthorForm;
-
-// id="${obj.firebaseKey ? `update-author--${obj.firebaseKey}` : 'submit-author'}"
