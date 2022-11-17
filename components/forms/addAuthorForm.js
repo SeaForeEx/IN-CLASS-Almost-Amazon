@@ -28,3 +28,5 @@ const addAuthorForm = (obj = {}) => {
 };
 
 export default addAuthorForm;
+
+// id="${obj.firebaseKey ? `update-author--${obj.firebaseKey}` : 'submit-author'}"
