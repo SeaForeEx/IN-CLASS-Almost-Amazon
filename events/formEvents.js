@@ -1,5 +1,5 @@
 import { createAuthor, getAuthors, updateAuthor } from '../api/authorData';
-import { getBooks, updateBook, createBook } from '../api/bookData';
+import { createBook, updateBook, getBooks } from '../api/bookData';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
 
@@ -29,11 +29,9 @@ const formEvents = () => {
 
     // TODO: CLICK EVENT FOR EDITING A BOOK
     if (e.target.id.includes('update-book')) {
-      // const [, firebaseKey] = e.target.id.split('--');
+      const [, firebaseKey] = e.target.id.split('--');
       // console.warn('CLICKED UPDATE BOOK', e.target.id);
       // console.warn(firebaseKey);
-      const [, firebaseKey] = e.target.id.split('--');
-
       const payload = {
         title: document.querySelector('#title').value,
         description: document.querySelector('#description').value,
@@ -53,10 +51,10 @@ const formEvents = () => {
     if (e.target.id.includes('submit-author')) {
       // console.warn('CLICKED SUBMIT AUTHOR');
       const payload = {
-        first_name: document.querySelector('#first_name').value,
-        last_name: document.querySelector('#last_name').value,
+        first_name: document.querySelector('#first-name').value,
+        last_name: document.querySelector('#last-name').value,
         email: document.querySelector('#email').value,
-        favorite: document.querySelector('#favorite').checked,
+        favorite: document.querySelector('#favorite').checked
       };
 
       createAuthor(payload).then(({ name }) => {
@@ -70,16 +68,15 @@ const formEvents = () => {
     // FIXME:ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('update-author')) {
       const [, firebaseKey] = e.target.id.split('--');
+
       const payload = {
-        first_name: document.querySelector('#first_name').value,
-        last_name: document.querySelector('#last_name').value,
-        email: document.querySelector('#email').value,
+        first_name: document.querySelector('#first-name').value,
+        last_name: document.querySelector('#last-name').value,
         favorite: document.querySelector('#favorite').checked,
         firebaseKey,
       };
 
       updateAuthor(payload).then(() => {
-        console.warn(payload);
         getAuthors().then(showAuthors);
       });
     }
