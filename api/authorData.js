@@ -2,7 +2,7 @@ import client from '../utils/client';
 
 const endpoint = client.databaseURL;
 
-// FIXME:  GET ALL AUTHORS
+// GET ALL AUTHORS promise
 const getAuthors = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors.json`, {
     method: 'GET',
@@ -15,6 +15,7 @@ const getAuthors = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// filter for fave authors promise
 const faveAuthors = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors.json?orderBy="favorite"&equalTo=true`, {
     method: 'GET',
@@ -91,5 +92,5 @@ export {
   deleteSingleAuthor,
   updateAuthor,
   getAuthorBooks,
-  faveAuthors,
+  faveAuthors
 };

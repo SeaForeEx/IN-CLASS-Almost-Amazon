@@ -9,7 +9,7 @@ const getBooks = () => new Promise((resolve, reject) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    }, // you technically do not need the options object for GET requests, but using it here for consistency
+    },
   })
     .then((response) => response.json())
     .then((data) => resolve(Object.values(data)))
@@ -22,10 +22,10 @@ const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-    }, // you technically do not need the options object for GET requests, but using it here for consistency
+    },
   })
     .then((response) => response.json())
-    .then((data) => resolve((data)))
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -35,10 +35,10 @@ const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    }, // you technically do not need the options object for GET requests, but using it here for consistency
+    },
   })
     .then((response) => response.json())
-    .then((data) => resolve(data)) // will resolve a single object
+    .then((data) => resolve(data))
     .catch(reject);
 });
 
@@ -48,8 +48,8 @@ const createBook = (payload) => new Promise((resolve, reject) => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-    }, // you technically do not need the options object for GET requests, but using it here for consistency
-    body: JSON.stringify(payload)
+    },
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
     .then((data) => resolve(data))
@@ -59,14 +59,14 @@ const createBook = (payload) => new Promise((resolve, reject) => {
 // TODO: UPDATE BOOK
 const updateBook = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books/${payload.firebaseKey}.json`, {
-    method: 'POST',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-    }, // you technically do not need the options object for GET requests, but using it here for consistency
-    body: JSON.stringify(payload)
+    },
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then(resolve)
     .catch(reject);
 });
 
