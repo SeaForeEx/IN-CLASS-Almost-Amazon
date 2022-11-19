@@ -6,8 +6,8 @@ import domEvents from '../events/domEvents';
 import formEvents from '../events/formEvents';
 import navigationEvents from '../events/navigationEvents';
 import { showBooks } from '../pages/books';
-import { getAuthors } from '../api/authorData';
-import { showAuthors } from '../pages/authors';
+// import { getAuthors } from '../api/authorData';
+// import { showAuthors } from '../pages/authors';
 
 const startApp = () => {
   domBuilder(); // BUILD THE DOM
@@ -19,7 +19,7 @@ const startApp = () => {
 
   // Put all books on the DOM on App load
   getBooks().then((books) => showBooks(books));
-  getAuthors().then((authors) => showAuthors(authors));
+  // getAuthors().then((authors) => showAuthors(authors));
   // whatever you resolve is returned at .then(taco)
 };
 
