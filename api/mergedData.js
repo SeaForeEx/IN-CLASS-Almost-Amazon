@@ -8,15 +8,15 @@ import { deleteBook, getSingleBook } from './bookData';
 // const endpoint = client.databaseURL;
 
 const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
-  getSingleBook(firebaseKey).then((bookObj) => {
-    getSingleAuthor(bookObj.author_id).then((authorObject) => resolve({ ...bookObj, authorObject }));
+  getSingleBook(firebaseKey).then((bookObject) => {
+    getSingleAuthor(bookObject.author_id).then((authorObject) => resolve({ ...bookObject, authorObject }));
   })
     .catch(reject);
 });
 
 const getAuthorDetails = (firebaseKey) => new Promise((resolve, reject) => {
-  getSingleAuthor(firebaseKey).then((authObj) => {
-    getAuthorBooks(firebaseKey).then((booksArray) => resolve({ ...authObj, booksArray }));
+  getSingleAuthor(firebaseKey).then((authorObject) => {
+    getAuthorBooks(firebaseKey).then((booksArray) => resolve({ ...authorObject, booksArray }));
   })
     .catch(reject);
 });
