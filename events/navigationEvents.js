@@ -5,7 +5,7 @@ import { faveAuthors, getAuthors } from '../api/authorData';
 import { showAuthors } from '../pages/authors';
 
 // navigation events
-const navigationEvents = () => {
+const navigationEvents = (user) => {
   // LOGOUT BUTTON
   document.querySelector('#logout-button')
     .addEventListener('click', signOut);
@@ -13,12 +13,12 @@ const navigationEvents = () => {
   // TODO: BOOKS ON SALE
   document.querySelector('#sale-books').addEventListener('click', () => {
     // console.warn('CLICKED SALE BOOKS');
-    booksOnSale().then(showBooks);
+    booksOnSale(user.uid).then(showBooks);
   });
 
   // TODO: ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
-    getBooks().then(showBooks);
+    getBooks(user.uid).then(showBooks);
   });
 
   // FIXME: STUDENTS Create an event listener for the Authors
@@ -27,11 +27,11 @@ const navigationEvents = () => {
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function
   document.querySelector('#authors').addEventListener('click', () => {
     // console.warn('CLICKED AUTHORS');
-    getAuthors().then(showAuthors);
+    getAuthors(user.uid).then(showAuthors);
   });
 
   document.querySelector('#fave-authors').addEventListener('click', () => {
-    faveAuthors().then(showAuthors);
+    faveAuthors(user.uid).then(showAuthors);
   });
 
   // STRETCH: SEARCH

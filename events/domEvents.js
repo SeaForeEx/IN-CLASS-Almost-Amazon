@@ -8,7 +8,7 @@ import { showBooks } from '../pages/books';
 import viewBook from '../pages/viewBook';
 import viewAuthor from '../pages/viewAuthor';
 
-const domEvents = () => {
+const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     // TODO: CLICK EVENT FOR DELETING A BOOK
     if (e.target.id.includes('delete-book')) {
@@ -18,7 +18,7 @@ const domEvents = () => {
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteBook(firebaseKey).then(() => {
-          getBooks().then(showBooks); // we call itinside of delete book cause it needs to go in sequence
+          getBooks(user.uid).then(showBooks); // we call itinside of delete book cause it needs to go in sequence
         });
       }
     }
@@ -26,7 +26,7 @@ const domEvents = () => {
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
       // console.warn('ADD BOOK');
-      addBookForm();
+      addBookForm(user.uid);
     }
 
     // TODO: CLICK EVENT EDITING/UPDATING A BOOK
@@ -54,7 +54,7 @@ const domEvents = () => {
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteAuthorBooksRelationship(firebaseKey).then(() => {
-          getAuthors().then(showAuthors);
+          getAuthors(user.uid).then(showAuthors);
         });
       }
     }
@@ -62,7 +62,7 @@ const domEvents = () => {
     // FIXME: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {
       // console.warn('ADD AUTHOR');
-      addAuthorForm();
+      addAuthorForm(user.uid);
     }
     // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('edit-author-btn')) {
