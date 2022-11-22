@@ -2,7 +2,7 @@ import clearDom from '../../utils/clearDom';
 import renderToDOM from '../../utils/renderToDom';
 import selectAuthor from './selectAuthor';
 
-const addBookForm = (obj = {}) => {
+const addBookForm = (uid, obj = {}) => {
   clearDom();
   const domString = `
     <form id="${obj.firebaseKey ? `update-book--${obj.firebaseKey}` : 'submit-book'}" class="mb-4"> 
